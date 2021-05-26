@@ -1,0 +1,34 @@
+<div class="todo">
+    <h1 class="todo__title">todo list</h1>
+    <div class="todo__new-task-block">
+        <input class="todo__new-task" type="text" name="new-task" [(ngModel)]="todo" placeholder="{{placeholderTodo}}">
+        <button (click)="createTodo()" class="todo__add-btn">add</button>
+    </div>
+</div>
+<ul class="todo__list noselect">
+    <li class="todo__list-item" *ngFor="let item of todos; let i = index" id="{{i}}">
+        <span class=" todo__list-item-time">{{item.date | date: 'dd.MM.yyyy'}} {{item.time |
+            date:
+            'HH:mm'}}</span>
+
+        <input type="checkbox" name="todo" [checked]="item.checked ? true : false" class="todo__list-item-check"
+            (change)="checkChange($event, item)">
+
+        <label class="todo__list-item-text" [class.important]="item.important == true">{{item.todo}}</label>
+
+        <button class="todo__list-item-imp" (click)="makeImportant(item, item.important)"
+            [disabled]="item.checked ? true : false" [class.todo-isDone]="item.checked ? true : false">Imp!</button>
+
+        <button class="todo__list-item-del" (click)="showModal($event)">Del</button>
+    </li>
+</ul>
+
+<div class="todo__modal-block" [class.visibility-hidden]="notVisible"></div>
+
+<div id="modal-delete" class="modal-delete" [class.visibility-hidden]="notVisible">
+    <span class="modal-delete__question">Delete item?</span>
+    <div>
+        <button (click)="closeModal()" class="modal-delete__no-btn">NO</button>
+        <button (click)="delTodo()" class="modal-delete__yes-btn">YES</button>
+    </div>
+</div>

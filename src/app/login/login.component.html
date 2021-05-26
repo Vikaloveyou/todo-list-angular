@@ -1,0 +1,54 @@
+<form novalidate [formGroup]="userForm" class="form">
+    <fieldset class="form__fieldset">
+        <h1 class="form__title">{{ title }}</h1>
+
+        <label>
+            <span class="form__email-title">Email</span>
+            <input class="form__email" type="email" name="email" formControlName="email"
+                [class.wrongData-border]="wrongDataBrd" placeholder={{placeholderEmail}}>
+        </label>
+
+        <div class="hint-wrapper noselect">
+            <div *ngIf="!userForm.controls['email'].value && userForm.controls['email'].touched"
+                class="form__err-email">
+                Field is required
+            </div>
+            <div *ngIf="userForm.controls['email'].invalid && userForm.controls['email'].touched && userForm.controls['email'].value"
+                class="form__err-email">
+                Email is not correct
+            </div>
+            <div *ngIf="wrongEmailPass" class="form__err-email">Wrong email or password</div>
+        </div>
+
+        <label>
+            <span class="form__pass-title">Password</span>
+            <input class="form__pass" type="password" name="password" formControlName="password"
+                placeholder={{placeholderPass}} [class.wrongData-border]="wrongDataBrd">
+        </label>
+        <div class="hint-wrapper noselect">
+            <div *ngIf="!userForm.controls['password'].value && userForm.controls['password'].touched"
+                class="form__err-pass">Field is required</div>
+            <div *ngIf="userForm.get('password').errors && userForm.get('password').errors.minlength"
+                class="form__err-pass">
+                You need to fill min - {{userForm.get('password').errors.minlength.requiredLength}}
+            </div>
+            <div *ngIf="userForm.get('password').errors && userForm.get('password').errors.minlength"
+                class="form__err-pass">
+                You filled - {{userForm.get('password').errors.minlength.actualLength}}
+            </div>
+
+            <div *ngIf="userForm.get('password').errors && userForm.get('password').errors.maxlength"
+                class="form__err-pass">
+                You need to fill max - {{userForm.get('password').errors.maxlength.requiredLength}}
+            </div>
+            <div *ngIf="userForm.get('password').errors && userForm.get('password').errors.maxlength"
+                class="form__err-pass">
+                You filled - {{userForm.get('password').errors.maxlength.actualLength}}
+            </div>
+            <div *ngIf="wrongEmailPass" class="form__err-email">Wrong email or password</div>
+        </div>
+
+        <input (click)="submit()" [disabled]="userForm.invalid" class="form__submit" routerLink="routingActivated"
+            type="button" value="Login" #submitDisabled>
+    </fieldset>
+</form>

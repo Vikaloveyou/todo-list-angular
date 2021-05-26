@@ -1,0 +1,93 @@
+.form {
+    width: 500px;
+    height: 400px;
+    box-shadow:  4px 4px 6px -1px rgb(80, 79, 79), -4px 4px 6px -1px rgb(80, 79, 79);
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    margin: 150px auto 0;
+   
+    &__fieldset {
+        width: 400px;
+        height: 330px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        border: none;
+      }
+
+    &__title {
+        font-family: sans-serif;
+        height: 70px;      
+    }
+
+    &__email,
+    &__pass {
+        width: 400px;
+        height: 35px;
+        margin-top: 5px;
+        border-radius: 5px;
+        padding: 5px;
+
+        &:focus {
+            outline: none;
+        }
+    }
+
+    &__submit {
+        font-family: sans-serif;
+        width: 120px;
+        height: 40px;
+        align-self: flex-end;
+        font-weight: bold;
+        color: #ffff;
+        background-color: #095DD6;
+        border-radius: 5px;
+
+        &:hover {
+            cursor: pointer;
+        }
+
+        &:disabled {
+            background-color: lighten(#095DD6, 20);
+            border: 2px solid #095DD6;
+        }
+    }
+
+    &__email-title,
+    &__pass-title  {
+        font-family: sans-serif;
+        font-weight: bold;
+    }
+
+    &__err-email,
+    &__err-pass  {
+        font-family: sans-serif;
+        font-size: 12px;
+        font-weight: bold;
+        color: red;
+        width: 400px;
+        height: 15px;
+    }
+}
+
+.show-err {
+    visibility: visible;     
+} 
+
+.important {
+    color: red;
+    font-weight: bold;
+}
+
+#login {
+    width: 510px;
+    height: 410px;
+    margin: 0 auto;
+    margin-top: 200px;
+}
+
+.wrongData-border {
+    border: solid red 2px !important;
+}
+
